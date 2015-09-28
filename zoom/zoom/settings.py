@@ -51,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'zoom_app.urls'
+ROOT_URLCONF = 'zoom.urls'
 
 TEMPLATES = [
     {
@@ -69,20 +69,23 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'zoom_app.wsgi.application'
+WSGI_APPLICATION = 'zoom.wsgi.application'
 
 #
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 #
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
+# #DATABASES = {
+# 'default': {
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'NAME': 'zoomapp_db',
+#     'USER': '',
+#     'PASSWORD': '',
+#     'HOST': 'localhost',
+#     'PORT': '',
 # }
-#
-#
+# }
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
