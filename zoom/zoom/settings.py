@@ -37,7 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'zoom',
+    'accessibilityneed',
+    'property',
+    'user',
 )
 
 MIDDLEWARE_CLASSES = (
