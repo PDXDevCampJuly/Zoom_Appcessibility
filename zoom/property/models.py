@@ -43,6 +43,7 @@ class Property(models.Model):
     description = models.CharField(max_length=2000, default=None)
     num_bedroom = models.CharField(max_length=20, default=None)
     num_bathroom = models.CharField(max_length=20, default=None)
+    # do I want to put num_access_bedroom, too?
     photo_property = models.ManyToManyField(Photo)
     property_amenity = models.ManyToManyField(Amenity)
     property_allergens = models.ManyToManyField(PotentialAllergen)
