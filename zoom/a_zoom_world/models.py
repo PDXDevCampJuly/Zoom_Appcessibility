@@ -50,10 +50,17 @@ class Property(models.Model):
     property_allergens = models.ManyToManyField(PotentialAllergen)
 
 
-class Exceptions(models.Model):
+class Exception(models.Model):
     """ This tables holds exceptions to access needs"""
     need = models.CharField(max_length=200, default=None)
     room_location = models.CharField(max_length=200, default=None)
+
+
+class AccessibilityNeed(models.Model):
+    """ This table holds the list of accessibility needs"""
+
+    name = models.CharField(max_length=200, default=None)
+    description = models.CharField(max_length=1000, default=None)
 
 
 class Vehicle(models.Model):
@@ -64,13 +71,6 @@ class Vehicle(models.Model):
     model = models.CharField(max_length=50, default=None)
     description = models.CharField(max_length=500, default=None)
     access_needs = models.ManyToManyField(AccessibilityNeed)
-
-
-class AccessibilityNeed(models.Model):
-    """ This table holds the list of accessibility needs"""
-
-    name = models.CharField(max_length=200, default=None)
-    description = models.CharField(max_length=1000, default=None)
 
 
 class PropertyNeed(models.Model):
@@ -84,8 +84,6 @@ class PropertyNeed(models.Model):
 class ZoomUser(models.Model):
     """ This table holds the user information using django default"""
 
-    new_user = models.OneToOneField(User)
-    saved_user = models.OneToOneField(User)
+    user = models.OneToOneField(User)
     accessibility_need = models.ForeignKey(AccessibilityNeed)
-
 
