@@ -50,7 +50,7 @@ class Property(models.Model):
     property_allergens = models.ManyToManyField(PotentialAllergen)
 
 
-class Exception(models.Model):
+class NeedException(models.Model):
     """ This tables holds exceptions to access needs"""
     need = models.CharField(max_length=200, default=None)
     room_location = models.CharField(max_length=200, default=None)
@@ -78,7 +78,7 @@ class PropertyNeed(models.Model):
 
     property_id = models.ForeignKey(Property)
     accessibility_need = models.ForeignKey(AccessibilityNeed)
-    property_need = models.ManyToManyField(Exception)
+    property_need = models.ManyToManyField(NeedException)
 
 
 class ZoomUser(models.Model):
