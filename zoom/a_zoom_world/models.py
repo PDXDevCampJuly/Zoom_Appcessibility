@@ -1,5 +1,6 @@
 from django.db import models
-from accessibilityneed.models import AccessibilityNeed
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
@@ -10,7 +11,7 @@ class DomicileType(models.Model):
 
 
 class Address(models.Model):
-    """ This table holds the location of the property listing"""
+    """ This table holds the location of the a_zoom_world listing"""
     street = models.CharField(max_length=200, default=None)
     street_two = models.CharField(max_length=200, default=None)
     city = models.CharField(max_length=50, default=None)
@@ -19,12 +20,12 @@ class Address(models.Model):
 
 
 class Photo(models.Model):
-    """ This table holds all the photos for the property"""
+    """ This table holds all the photos for the a_zoom_world"""
     photo = models.ImageField()
 
 
 class Amenity(models.Model):
-    """ This table holds all the amenities a property has """
+    """ This table holds all the amenities a a_zoom_world has """
     type = models.CharField(max_length=500, default=None)
 
 
@@ -35,7 +36,7 @@ class PotentialAllergen(models.Model):
 
 
 class Property(models.Model):
-    """ This table holds information about each property """
+    """ This table holds information about each a_zoom_world """
 
     type_id = models.ForeignKey(DomicileType)
     address = models.ForeignKey(Address)
@@ -55,14 +56,6 @@ class Exceptions(models.Model):
     room_location = models.CharField(max_length=200, default=None)
 
 
-class PropertyNeed(models.Model):
-    """ This table holds specific needs to a property """
-
-    property_id = models.ForeignKey(Property)
-    accessibility_need = models.ForeignKey(AccessibilityNeed)
-    property_need = models.ManyToManyField(Exceptions)
-
-
 class Vehicle(models.Model):
     """ This table holds a list of possible vehicle availability """
 
@@ -73,5 +66,26 @@ class Vehicle(models.Model):
     access_needs = models.ManyToManyField(AccessibilityNeed)
 
 
+class AccessibilityNeed(models.Model):
+    """ This table holds the list of accessibility needs"""
+
+    name = models.CharField(max_length=200, default=None)
+    description = models.CharField(max_length=1000, default=None)
+
+
+class PropertyNeed(models.Model):
+    """ This table holds specific needs to a a_zoom_world """
+
+    property_id = models.ForeignKey(Property)
+    accessibility_need = models.ForeignKey(AccessibilityNeed)
+    property_need = models.ManyToManyField(Exceptions)
+
+
+class ZoomUser(models.Model):
+    """ This table holds the user information using django default"""
+
+    new_user = models.OneToOneField(User)
+    saved_user = models.OneToOneField(User)
+    accessibility_need = models.ForeignKey(AccessibilityNeed)
 
 

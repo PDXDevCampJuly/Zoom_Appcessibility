@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accessibilityneed',
-    'property',
+    'a_zoom_world',
     'user',
 )
 
