@@ -78,7 +78,7 @@ class PropertyNeed(models.Model):
 
     property_id = models.ForeignKey(Property)
     accessibility_need = models.ForeignKey(AccessibilityNeed)
-    property_need = models.ManyToManyField(Exceptions)
+    property_need = models.ManyToManyField(Exception)
 
 
 class ZoomUser(models.Model):
