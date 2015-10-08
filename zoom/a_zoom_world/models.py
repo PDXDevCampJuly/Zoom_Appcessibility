@@ -21,13 +21,13 @@ class Address(models.Model):
 
 class Photo(models.Model):
     """ This table holds all the photos for the a_zoom_world"""
-    photo = models.ImageField()
+    photo = models.ImageField()#(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
 
 
 class Amenity(models.Model):
     """ This table holds all the amenities a a_zoom_world has """
     type = models.CharField(max_length=500, default=None)
-
+    wifi = models.BooleanField(default=False)
 
 class PotentialAllergen(models.Model):
     """ This table stores information on potential allergens"""

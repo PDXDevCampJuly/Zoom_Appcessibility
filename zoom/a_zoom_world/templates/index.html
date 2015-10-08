@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{% static 'css/travel.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="page">
+	<div id="sidebar">
+		<div id="logo">
+			<h1><a href="#">Zoom Around the World</a></h1>
+		</div>
+		<!-- end header -->
+		<div id="menu">
+			<ul>
+				<li class="first"><a href="#">Home</a></li>
+				<li><a href="#">Destinations</a></li>
+				<li><a href="#">Customer Support</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="#">Contact Us</a></li>
+			</ul>
+		</div>
+		<!-- end menu -->
+		<div id="login">
+			<h2 class="title1">User Login</h2>
+			<form id="form1" method="post" action="#">
+				<fieldset>
+				<label for="inputtext1">Email:</label>
+				<input id="inputtext1" type="text" name="inputtext1" placeholder="youremail@something.com" />
+				<label for="inputtext2">Password:</label>
+				<input id="inputtext2" type="password" name="inputtext2" value="" />
+				<input id="inputsubmit1" type="submit" name="inputsubmit1" value="Sign In" />
+				<label for="rememberme"><input name="rememberme"id="rememberme" type="checkbox" checked="checked"value="forever"/> Remember me</label><br/>
+					<p><a href="#">Forgot your password?</a><br />
+					<a href="#">Register for Free!</a></p>
+				</fieldset>
+			</form>
+			<script type="text/javascript">
+				$('#commentform').formerize();
+			</script>
+		</div>
+	</div>
+	<!-- end sidebar -->
+	<div id="content">
+
+		<form action="{% url upload_pic %}" method="post"
+			  enctype="multipart/form-data">{% csrf_token %}
+			<p>
+				<input id="id_image" type="file" class="" name="image">
+			</p>
+			<input type="submit" value="Submit"/>
+		</form>
+
+		<div><img src="someimage.jpg" alt="" width="740" height="220" /></div>
+		<div class="boxed">
+			<h1 class="title2">I'm so glad you stopped by!</h1>
+			<p><strong>Zoom</strong>
+			<a href="http://www.stratosgroupllc.com/" </a> Stratos Group LLC  </p>
+			<h3>Something to say</h3>
+			<p>Something to say</p>
+			<blockquote>
+				<p> &rdquo;</p>
+			</blockquote>
+		</div>
+		<div class="boxed orange">
+			<div class="col-one">
+				<h2 class="title3">Something to say</h2>
+
+			</div>
+			<div class="col-two">
+				<h2 class="title3">Something to say</h2>
+
+			</div>
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+	</div>
+	<!-- end content -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end page -->
+<div id="footer">
+	<p id="legal">Copyright &copy; 2015. All Rights Reserved. Designed by Summer Lyn Bryant and Stratos Group LLC.</p>
+	<p id="links"><a href="privacypolicy">Privacy Policy</a> | <a href="terms">Terms of Use</a></p>
+</div
+</body>
+</html>
+
