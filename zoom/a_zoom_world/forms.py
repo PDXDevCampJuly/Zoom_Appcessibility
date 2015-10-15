@@ -5,39 +5,39 @@ from .models import *
 class AmenityForm(forms.ModelForm):
     class Meta:
         model = Amenity
-        fields = ['Washer/Dryer', 'Pet Friendly', 'Internet', 'Parking', 'TV',
-                  'Swimming Pool','Hot Tub','Gym', 'Fridge', 'Microwave','Coffee/Tea',
-                  'Restaurant', 'Cookware/Utensils',]
+        fields = ['washer', 'dryer', 'service_dog', 'pets', 'internet', 'parking', 'tv',
+                  'pool','hot_tub','gym', 'fridge', 'microwave','coffee', 'tea',
+                  'restaurant', 'cookware','utensils']
 
 
 class PropertyAccessibilityForm(forms.ModelForm):
     class Meta:
         model = PropertyNeed
-        fields = ['roll_in_shower', 'Grab Rails in Bathroom','Visual Impairment',
-                  'Hearing Impairment', 'WheelChair/Scooter Access', 'Electric Bed',
-                  'Shower Chair', 'Ceiling Track Hoist', 'Mobile Hoist',
-                  'Pool Hoist',]
+        fields = ['roll_in_shower', 'grab_rails_in_bathroom','visual_impairment',
+                  'hearing_impairment', 'wheelchair_scooter_access', 'electric_bed',
+                  'shower_chair', 'ceiling_track_hoist', 'mobile_hoist',
+                  'pool_hoist']
 
 
 class Login(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password',]
+        fields = ['username', 'password']
 
 
 class Signup(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password',]
+        fields = ['first_name', 'last_name', 'email', 'username', 'password']
 
 
 class AllergenForm(forms.ModelForm):
     class Meta:
         model = PotentialAllergen
-        fields = ['Cedar Trees', 'Cats Inside', 'Dogs Inside',]
+        fields = ['cedar_trees', 'cats_inside', 'dogs_inside']
 
 
 class PropertyType(forms.ModelForm):
     class Meta:
         model = DomicileType
-        fields = ['House', 'Apartment', 'Condo', 'Loft', 'Square Feet',]
+        fields = ['house', 'apartment', 'condo', 'loft', 'square_feet']
