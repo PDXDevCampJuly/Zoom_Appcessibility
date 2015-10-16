@@ -3,6 +3,7 @@ from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from .forms import *
+from PIL import Image
 
 
 # Create your views here.
@@ -10,7 +11,7 @@ from .forms import *
 
 def index(request):
 
-    return render(request, 'index.html')
+    return render(request, 'new_user.html')
 
 #-----New User----#
 def join_zoom(request):
@@ -31,7 +32,7 @@ def join_zoom(request):
     else:
         user_form = Login()
 
-    return render(request, 'homepage.html',
+    return render(request, 'homepage_properties.html',
                   {'user_form': user_form,
                    'registered': registered})
 
@@ -57,9 +58,16 @@ def login_zoom_user(request):
             return HttpResponse("Login Information is Invalid")
 
     else:
-        return render(request, 'homepage.html')
+        return render(request, 'homepage_properties.html')
 
 #---logout---#
 def logout(request):
     logout(request)
     return render(request, 'log_out.html')
+
+
+def properties_listing(request):
+    # we want to fetch all properties from database and pass to template"
+    list = Property.objects.all()
+    print(list)
+    return render(request,'homepage_properties.html', {'list': list})

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block zoom_content %}
+
+
+    {% for property in list %}
+        <div>
+            <img src='{{ property.photo_property }}' alt="The feature photo of the property" />
+            <h3> {{ property.title }}</h3>
+            <p> {{ property.description }}</p>
+
+            <h3> Accessible Bedroom/Bathroom Score </h3>
+            <p>  {{ property.num_bedroom }}</p>
+            <p> {{ property.num_bathroom }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -18,7 +18,7 @@ class DomicileType(models.Model):
 class Address(models.Model):
     """ This table holds the location of the a_zoom_world listing"""
     street = models.CharField(max_length=200, default=None)
-    street_two = models.CharField(max_length=200, default=None)
+    street_two = models.CharField(max_length=200, blank=True)
     city = models.CharField(max_length=50, default=None)
     state = models.CharField(max_length=50, default=None)
     zip_code = models.IntegerField()
@@ -70,7 +70,7 @@ class Property(models.Model):
     num_bedroom = models.CharField(max_length=20, default=None)
     num_bathroom = models.CharField(max_length=20, default=None)
     # do I want to put num_access_bedroom, too?
-    photo_property = models.ManyToManyField(Photo)
+    photo_property = models.ManyToManyField(Photo, related_name='property_photos', verbose_name=('photo_property'))
     property_amenity = models.ManyToManyField(Amenity)
     property_allergens = models.ManyToManyField(PotentialAllergen)
 
