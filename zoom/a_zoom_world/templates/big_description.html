@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block zoom_content %}
+
+
+        <div>
+            <a href="property_gallery.html"> <img src='{{ property.picture.photo.url }}'alt="The feature photo of the property" width=150, height=150 /></a>
+             <h3> {{ property.title }} </h3>
+            <p> {{ property.description }}</p>
+
+            <h3> Access Features </h3>
+                <p> {{ propertyneed.roll_in_shower }} </p>
+                <p> {{ propertyneed.grab_rails_in_bathroom }} </p>
+                <p> {{ propertyneed.visual_impairment }} </p>
+                <p> {{ propertyneed.hearing_impairment }} </p>
+                <p> {{ propertyneed.wheelchair_scooter_access }} </p>
+                <p> {{ propertyneed.electric_bed }} </p>
+                <p> {{ propertyneed.shower_chair }} </p>
+                <p> {{ propertyneed.ceiling_track_hoist }} </p>
+                <p> {{ propertyneed.mobile_hoist }} </p>
+                <p> {{ propertyneed.pool_hoist }} </p>
+
+            <h3> Amenities </h3>
+                <p> {{ amenity.washer }} </p>
+                <p> {{ amenity.dryer }} </p>
+                <p> {{ amenity.service_dog }} </p>
+                <p> {{ amenity.internet }} </p>
+                <p> {{ amenity.tv }} </p>
+                <p> {{ amenity.pool }} </p>
+                <p> {{ amenity.hot_tub }} </p>
+                <p> {{ amenity.pool }} </p>
+                <p> {{ amenity.gym }} </p>
+                <p> {{ amenity.fridge }} </p>
+                <p> {{ amenity.microwave }} </p>
+                <p> {{ amenity.coffee }} </p>
+                <p> {{ amenity.tea }} </p>
+                <p> {{ amenity.restaurant }} </p>
+                <p> {{ amenity.cookware }} </p>
+                <p> {{ amenity.utensils }} </p>
+
+        </div>
+
+
+{% endblock %}

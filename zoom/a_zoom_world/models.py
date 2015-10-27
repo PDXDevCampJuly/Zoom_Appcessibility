@@ -7,12 +7,11 @@ from django.contrib.auth.models import User
 
 class DomicileType(models.Model):
     """ This table distinguishes the type of housing it is"""
-    name = models.CharField(max_length=200, default=None)
-    house = models.BooleanField(default=False)
-    apartment = models.BooleanField(default=False)
-    condo = models.BooleanField(default=False)
-    loft = models.BooleanField(default=False)
-    square_feet = models.BooleanField(default=False)
+    type = models.CharField(max_length=500, default=None)
+    square_feet = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.type
 
 
 class Address(models.Model):
@@ -23,41 +22,33 @@ class Address(models.Model):
     state = models.CharField(max_length=50, default=None)
     zip_code = models.IntegerField()
 
+    def __str__(self):
+        return self.street
+
 
 class Photo(models.Model):
-    """ This table holds all the photos for the a_zoom_world"""
+    """ This table holds all the photos for the a_zoom_world """
     photo = models.ImageField(upload_to='images/')
+
+    def __index__(self):
+        return self.photo
 
 
 class Amenity(models.Model):
     """ This table holds all the amenities a a_zoom_world has """
     type = models.CharField(max_length=500, default=None)
-    washer = models.BooleanField(default=False)
-    dryer = models.BooleanField(default=False)
-    service_dog = models.BooleanField(default=False)
-    pets = models.BooleanField(default=False)
-    internet = models.BooleanField(default=False)
-    parking = models.BooleanField(default=False)
-    tv = models.BooleanField(default=False)
-    pool = models.BooleanField(default=False)
-    hot_tub = models.BooleanField(default=False)
-    gym = models.BooleanField(default=False)
-    fridge = models.BooleanField(default=False)
-    microwave = models.BooleanField(default=False)
-    coffee = models.BooleanField(default=False)
-    tea = models.BooleanField(default=False)
-    restaurant = models.BooleanField(default=False)
-    cookware = models.BooleanField(default=False)
-    utensils = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.type
 
 
 class PotentialAllergen(models.Model):
     """ This table stores information on potential allergens"""
 
     description = models.CharField(max_length=500, default=None)
-    cedar_trees = models.BooleanField(default=False)
-    cats_inside = models.BooleanField(default=False)
-    dogs_inside = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.description
 
 
 class Property(models.Model):
@@ -69,10 +60,14 @@ class Property(models.Model):
     description = models.CharField(max_length=2000, default=None)
     num_bedroom = models.CharField(max_length=20, default=None)
     num_bathroom = models.CharField(max_length=20, default=None)
-    # do I want to put num_access_bedroom, too?
+    access_num_bedroom = models.CharField(max_length=20, default=None)
+    access_num_bathroom = models.CharField(max_length = 20, default = None)
     photo_property = models.ManyToManyField(Photo, related_name='property_photos', verbose_name=('photo_property'))
     property_amenity = models.ManyToManyField(Amenity)
     property_allergens = models.ManyToManyField(PotentialAllergen)
+
+    def __str__(self):
+        return self.title
 
 
 class NeedException(models.Model):
@@ -80,12 +75,18 @@ class NeedException(models.Model):
     need = models.CharField(max_length=200, default=None)
     room_location = models.CharField(max_length=200, default=None)
 
+    def __str__(self):
+        return self.need
+
 
 class AccessibilityNeed(models.Model):
     """ This table holds the list of accessibility needs for the user/traveller"""
 
     name = models.CharField(max_length=200, default=None)
     description = models.CharField(max_length=1000, default=None)
+
+    def __str__(self):
+        return self.description
 
 
 class Vehicle(models.Model):
@@ -97,6 +98,9 @@ class Vehicle(models.Model):
     description = models.CharField(max_length=500, default=None)
     access_needs = models.ManyToManyField(AccessibilityNeed)
 
+    def __str__(self):
+        return self.property_id
+
 
 class PropertyNeed(models.Model):
     """ This table holds specific needs to a listed property  """
@@ -104,16 +108,10 @@ class PropertyNeed(models.Model):
     property_id = models.ForeignKey(Property)
     accessibility_need = models.ForeignKey(AccessibilityNeed)
     property_need = models.ManyToManyField(NeedException)
-    roll_in_shower = models.BooleanField(default=False)
-    grab_rails_in_bathroom = models.BooleanField(default=False)
-    visual_impairment = models.BooleanField(default=False)
-    hearing_impairment = models.BooleanField(default=False)
-    wheelchair_scooter_access = models.BooleanField(default=False)
-    electric_bed = models.BooleanField(default=False)
-    shower_chair = models.BooleanField(default=False)
-    ceiling_track_hoist = models.BooleanField(default=False)
-    mobile_hoist = models.BooleanField(default=False)
-    pool_hoist = models.BooleanField(default=False)
+
+# Do I need number of accessible bathrooms/bedrooms?
+    def __str__(self):
+        return self.property_id
 
 
 class ZoomUser(models.Model):
@@ -122,3 +120,5 @@ class ZoomUser(models.Model):
     user = models.OneToOneField(User)
     accessibility_need = models.ForeignKey(AccessibilityNeed)
 
+    def __str__(self):
+        return self.user

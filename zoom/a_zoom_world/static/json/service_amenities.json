@@ -1,0 +1,18 @@
+[
+  {"amenity": "washer"},
+  {"amenity":"dryer"},
+  {"amenity": "internet"},
+  {"amenity": "parking"},
+  {"amenity": "tv"},
+  {"amenity": "pool"},
+  {"amenity": "hot_tub"},
+  {"amenity": "gym"},
+  {"amenity": "fridge"},
+  {"amenity": "microwave"},
+  {"amenity": "coffee"},
+  {"amenity": "tea"},
+  {"amenity": "restaurant"},
+  {"amenity": "cookware"},
+  {"amenity": "utensils"}
+]
+

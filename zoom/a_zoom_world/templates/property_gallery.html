@@ -1,0 +1,21 @@
+#here I want this to display all the images associated with the property.
+# A lightbox will happen when you click on the image
+
+
+{% extends "base.html" %}
+
+{% block zoom_content %}
+
+{% for picture in photo_gallery %}
+        <div>
+        <a href="property_gallery.html"><img src='{{ property.picture.photo.url }}'
+            alt="A gallery of photos for the property."  width=150, height=150/></a>
+        </div>
+
+{% endfor %}
+
+    <a href="big_description.html"><h3> {{ property.title }} </h3></a>
+
+        <p> {{ property.description }}</p>
+
+{% endblock %}

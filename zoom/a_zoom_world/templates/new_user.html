@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
+
 {% block zoom_content %}
 <section class="signup">
-    <h2>Start Zooming Around</h2>
+    <h2>New User Sign Up</h2>
 
     <form id="signup" method="post" novalidate>
         <label for="firstname">First Name</label>
@@ -13,13 +14,13 @@
         <label for="email">email</label>
         <input type="email" name="email" placeholder="youremail@whatever.com"
                required/>
-
         <input type="submit" name="submit" id="submit"
                value="Zoom to your next adventure!"/>
+        <label for="rememberme"><input name="rememberme" id="rememberme" type="checkbox"
+        checked="checked" value="forever"/> Yes, Remember Me!</label><br/>
+
     </form>
-    <script type="text/javascript">
-        $('#commentform').formerize();
-    </script>
+
 </section>
 
 {% endblock %}

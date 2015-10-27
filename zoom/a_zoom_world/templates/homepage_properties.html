@@ -3,15 +3,16 @@
 {% block zoom_content %}
 
 
-    {% for property in list %}
+    {% for property in listing %}
         <div>
-            <img src='{{ property.photo_property }}' alt="The feature photo of the property" />
-            <h3> {{ property.title }}</h3>
+           <a href="property_gallery.html"><img src='{{ property.picture.photo.url }}' alt="The feature photo of the property" width=150, height=150 /></a>
+           <a href="big_description.html"> <h3> {{ property.title }}  </h3> </a>
             <p> {{ property.description }}</p>
 
             <h3> Accessible Bedroom/Bathroom Score </h3>
-            <p>  {{ property.num_bedroom }}</p>
-            <p> {{ property.num_bathroom }}</p>
+            <p> {{ property.access_num_bedroom}} / {{ property.num_bedroom }} </p>
+            <p> {{ property.access_num_bathroom}} / {{ property.num_bathroom }}</p>
         </div>
     {% endfor %}
 {% endblock %}
+
