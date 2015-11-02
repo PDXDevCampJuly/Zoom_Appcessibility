@@ -5,8 +5,8 @@
 
     {% for property in listing %}
         <div>
-           <a href="property_gallery.html"><img src='{{ property.picture.photo.url }}' alt="The feature photo of the property" width=150, height=150 /></a>
-           <a href="big_description.html"> <h3> {{ property.title }}  </h3> </a>
+           <a href="{% url 'property_gallery' property.id %}"><img src='{{ property.picture.photo.url }}' alt="The feature photo of the property" width=150, height=150 /></a>
+           <a href="{% url 'property_description' property.id %}"> <h3> {{ property.title }}  </h3> </a>
             <p> {{ property.description }}</p>
 
             <h3> Accessible Bedroom/Bathroom Score </h3>

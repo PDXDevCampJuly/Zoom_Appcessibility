@@ -23,7 +23,7 @@ a:hover {
 .title1 {
 	margin: 0;
 	padding: 10px 0;
-	background: url(/static/images/img07.gif) repeat-x left bottom;
+	background: url(/static/images/) repeat-x left bottom;
 	font-weight: normal;
 	font-size: 129%;
 	color: #FFFFFF;
@@ -32,7 +32,7 @@ a:hover {
 .title2 {
 	margin: 0;
 	padding: 10px 0;
-	background: url(images/img09.gif) repeat-x left bottom;
+	background: url(images/) repeat-x left bottom;
 	font-size: 227%;
 	font-weight: normal;
 	color: #135293;
@@ -41,7 +41,7 @@ a:hover {
 .title3 {
 	margin: 0;
 	padding: 10px 0;
-	background: url(images/img11.gif) repeat-x left bottom;
+	background: url(images/) repeat-x left bottom;
 	font-size: 129%;
 	font-weight: normal;
 	color: #FFFFFF;
@@ -57,7 +57,7 @@ a:hover {
 
 .orange {
 	margin: 20px 30px;
-	background: #FF9523 url(images/img10.gif) repeat-x;
+	background: #FF9523 url(images/) repeat-x;
 	color: #FFFFFF;
 }
 
@@ -80,7 +80,7 @@ a:hover {
 #page {
 	width: 980px;
 	margin: 0 auto;
-	background: #FFFFFF url(images/img01.gif) repeat-y;
+	background: #FFFFFF url(images/) repeat-y;
 }
 
 /* Sidebar */
@@ -94,7 +94,7 @@ a:hover {
 
 #logo {
 	height: 220px;
-	background: #FFFFFF url(images/img02.gif) repeat-y right top;
+	background: #FFFFFF url(images/) repeat-y right top;
 }
 
 #logo h1, #logo h2 {
@@ -108,7 +108,7 @@ a:hover {
 
 #logo h1 {
 	padding: 100px 0 0 0;
-	background: url(images/img03.gif) no-repeat center center;
+	background: url(images/) no-repeat center center;
 	font-size: 36px;
 }
 
@@ -125,7 +125,7 @@ a:hover {
 
 #menu {
 	padding: 20px;
-	background: #85C329 url(images/img04.gif) repeat-x;
+	background: #85C329 url(images/) repeat-x;
 }
 
 #menu ul {
@@ -136,7 +136,7 @@ a:hover {
 
 #menu li {
 	padding: 10px 0;
-	background: url(images/img05.gif) repeat-x;
+	background: url(images/) repeat-x;
 }
 
 #menu li.first {
@@ -157,7 +157,7 @@ a:hover {
 
 #login {
 	padding: 20px;
-	background: url(images/img06.gif) repeat-x;
+	background: url(images/) repeat-x;
 }
 
 #login form {
@@ -175,14 +175,14 @@ a:hover {
 	color: #FFFFFF;
 }
 
-#inputtext1, #inputtext2 {
+#signup {
 	width: 194px;
 	margin-bottom: .5em;
 	font: bold 100% Georgia, "Times New Roman", Times, serif;
 	color: #666666;
 }
 
-#inputsubmit1 {
+input {
 	margin-bottom: .5em;
 	font: bold 100% Georgia, "Times New Roman", Times, serif;
 	color: #666666;
@@ -205,7 +205,7 @@ a:hover {
 	width: 980px;
 	height: 120px;
 	margin: 0 auto;
-	background: url(images/img12.gif) repeat-x;
+	background: url(images/) repeat-x;
 }
 
 #footer p {
@@ -218,7 +218,7 @@ a:hover {
 	width: 220px;
 	height: 45px;
 	padding: 35px 0 0 20px;
-	background: url(images/img13.gif) repeat-x;
+	background: url(images/) repeat-x;
 }
 
 #links a {

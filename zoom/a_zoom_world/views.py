@@ -3,6 +3,7 @@ from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from .forms import *
+import json
 from PIL import Image
 
 
@@ -32,7 +33,7 @@ def new_user(request):
     else:
         user_form = Login()
 
-    return render(request, 'log_in.html',
+    return render(request, 'new_user.html',
                   {'user_form': user_form,
                    'registered': registered})
 
@@ -62,40 +63,44 @@ def login_zoom_user(request):
 
 #---logout---#
 def logout(request):
-    logout(request)
+
     return render(request, 'log_out.html')
 
 
 def properties_listing(request):
+    # main list of properties
     # we want to fetch all properties from database and pass to template"
-    listing = Property.objects.all()
-    for i in listing:
-        i.picture = i.photo_property.all()[0]
+    listings = Property.objects.all()
+    for i in listings:
+        i.picture = i.photo_property.get(featured=True)
 
-    return render(request, 'homepage_properties.html', {'listing': listing})
+    return render(request, 'homepage_properties.html', {'listing': listings})
 
 
-def big_description_page(request):
-    # I want to call one property listing and show all the cool things about the property
-    # I will need to make a query from the database that gets info about property
+def property_description(request, property_id):
+    property_info = Property.objects.get(pk=property_id)
+    feature_photo = property_info.photo_property.get(featured=True)
 
-    big_listing = Property.objects.all()
-    for i in big_listing:
-        i.picture = i.photo_property.all()
-    #need to call amenities and needs here
-    return render(request, 'big_description.html', {'big_listing': big_listing})
-
+    return render(request, 'big_description.html', {'property': property_info, 'feature_photo': feature_photo})
 
 
 def new_listing(request):
-    return render(request,'new_listing.html')
+    return render(request, 'new_listing.html')
 
 
-def property_gallery_page(request):
-    photo_gallery = Photo.objects.all()
+def property_gallery_page(request, property_id):
+    photo_gallery = Photo.objects.filter(property_photos__pk=property_id)
     for i in photo_gallery:
-         i.picture = i.photo
-    return render(request, 'property_gallery.html', {'photo_gallery': photo_gallery })
+        i.picture = i.photo
+    return render(request, 'property_gallery.html', {'photo_gallery': photo_gallery, 'property_id': property_id})
+
+
+def load_access_need(request, property_id, pn):
+    property_needs_access = AccessibilityNeed.objects.filter(access_property_needs_pk=property_id)
+    for i in property_needs_access:
+        i.access = i.propertyneed.get
+        print(json.pn)
+    return render(request, 'big_description.html', {'property_needs_access': property_needs_access, 'property_id': property_id, 'pn': pn})
 
 
 def about_us(request):

@@ -29,9 +29,15 @@ class Address(models.Model):
 class Photo(models.Model):
     """ This table holds all the photos for the a_zoom_world """
     photo = models.ImageField(upload_to='images/')
+    featured = models.BooleanField(default=False)
 
-    def __index__(self):
-        return self.photo
+    def image_object(self):
+        return u'<img src="' + self.photo.url + '" width=200 />'
+    image_object.short_description = "Image"
+    image_object.allow_tags = True
+
+    def __str__(self):
+        return self.photo.url
 
 
 class Amenity(models.Model):

@@ -4,9 +4,13 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.login_zoom_user, name='log_in'),
+    url(r'^property/(?P<property_id>[0-9]+)/$', views.property_description, name='property_description'),
+    url(r'^property/(?P<property_id>[0-9]+)/gallery/$', views.property_gallery_page, name='property_gallery'),
+    url(r'^property/(?P<property_id>[0-9]+)/gallery/property_gallery', views.property_gallery_page, name='property_gallery'),
+
+    url(r'^new_user', views.new_user, name='new_user'),
     url(r'^homepage_properties', views.properties_listing, name='properties_listing'),
-    url(r'^big_description', views.big_description_page, name='big_description'),
-    url(r'^property_gallery', views.property_gallery_page, name='property_gallery'),
+    url(r'^log_out', views.logout, name='log_out'),
     url(r'^about_us', views.about_us, name='about_us'),
     url(r'^contact_us', views.contact_us, name='contact_us'),
     url(r'^privacy_policy', views.privacy_policy, name='privacy_policy'),

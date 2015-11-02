@@ -4,7 +4,7 @@ from .models import *
 #
 admin.site.register(DomicileType)
 admin.site.register(Address)
-admin.site.register(Photo)
+
 admin.site.register(Amenity)
 admin.site.register(PotentialAllergen)
 admin.site.register(Property)
@@ -14,3 +14,9 @@ admin.site.register(Vehicle)
 admin.site.register(PropertyNeed)
 admin.site.register(ZoomUser)
 
+
+class PhotoAdmin(admin.ModelAdmin):
+    readonly_fields = ('image_object',)
+
+
+admin.site.register(Photo, PhotoAdmin)
