@@ -5,8 +5,7 @@ from django.db import models, migrations
 from django.conf import settings
 import json
 from django.db import migrations
-from a_zoom_world.models import DomicileType, Amenity, PotentialAllergen, \
-    AccessibilityNeed
+from a_zoom_world.models import DomicileType, Amenity, PotentialAllergen, AccessibilityNeed
 
 
 def load_potential_allergen(apps, schema_editor):
@@ -21,7 +20,7 @@ def load_potential_allergen(apps, schema_editor):
         pa.save()
 
 
-def load_service_amenties(apps, schema_editor):
+def load_service_amenities(apps, schema_editor):
     with open('a_zoom_world/static/json/service_amenities.json') as json_file:
         json_data = json.load(json_file)
 
@@ -53,7 +52,6 @@ def reverse_func():
     # A dummy function so the zero works.
     pass
 
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -64,7 +62,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AccessibilityNeed',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('name', models.CharField(max_length=200, default=None)),
                 ('description', models.CharField(max_length=1000, default=None)),
             ],
@@ -72,9 +70,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Address',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('street', models.CharField(max_length=200, default=None)),
-                ('street_two', models.CharField(max_length=200, blank=True)),
+                ('street_two', models.CharField(blank=True, max_length=200)),
                 ('city', models.CharField(max_length=50, default=None)),
                 ('state', models.CharField(max_length=50, default=None)),
                 ('zip_code', models.IntegerField()),
@@ -83,14 +81,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Amenity',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('type', models.CharField(max_length=500, default=None)),
             ],
         ),
         migrations.CreateModel(
             name='DomicileType',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('type', models.CharField(max_length=500, default=None)),
                 ('square_feet', models.IntegerField(blank=True, null=True)),
             ],
@@ -98,7 +96,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='NeedException',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('need', models.CharField(max_length=200, default=None)),
                 ('room_location', models.CharField(max_length=200, default=None)),
             ],
@@ -106,21 +104,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Photo',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('photo', models.ImageField(upload_to='images/')),
+                ('featured', models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
             name='PotentialAllergen',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('description', models.CharField(max_length=500, default=None)),
             ],
         ),
         migrations.CreateModel(
             name='Property',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('title', models.CharField(max_length=50, default=None)),
                 ('description', models.CharField(max_length=2000, default=None)),
                 ('num_bedroom', models.CharField(max_length=20, default=None)),
@@ -128,7 +127,7 @@ class Migration(migrations.Migration):
                 ('access_num_bedroom', models.CharField(max_length=20, default=None)),
                 ('access_num_bathroom', models.CharField(max_length=20, default=None)),
                 ('address', models.ForeignKey(to='a_zoom_world.Address')),
-                ('photo_property', models.ManyToManyField(to='a_zoom_world.Photo', verbose_name='photo_property', related_name='property_photos')),
+                ('photo_property', models.ManyToManyField(verbose_name='photo_property', to='a_zoom_world.Photo', related_name='property_photos')),
                 ('property_allergens', models.ManyToManyField(to='a_zoom_world.PotentialAllergen')),
                 ('property_amenity', models.ManyToManyField(to='a_zoom_world.Amenity')),
                 ('type_id', models.ForeignKey(to='a_zoom_world.DomicileType')),
@@ -137,7 +136,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PropertyNeed',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
                 ('accessibility_need', models.ForeignKey(to='a_zoom_world.AccessibilityNeed')),
                 ('property_id', models.ForeignKey(to='a_zoom_world.Property')),
                 ('property_need', models.ManyToManyField(to='a_zoom_world.NeedException')),
@@ -146,24 +145,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Vehicle',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
-                ('make', models.CharField(max_length=50, default=None)),
-                ('model', models.CharField(max_length=50, default=None)),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('year', models.IntegerField(default=None)),
+                ('make_and_model', models.CharField(max_length=50, default=None)),
                 ('description', models.CharField(max_length=500, default=None)),
                 ('access_needs', models.ManyToManyField(to='a_zoom_world.AccessibilityNeed')),
-                ('property_id', models.ForeignKey(to='a_zoom_world.Property')),
+                ('property_id', models.ManyToManyField(to='a_zoom_world.Property')),
             ],
         ),
         migrations.CreateModel(
             name='ZoomUser',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
-                ('accessibility_need', models.ForeignKey(to='a_zoom_world.AccessibilityNeed')),
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('accessibility_need', models.ManyToManyField(to='a_zoom_world.AccessibilityNeed')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.RunPython(load_potential_allergen, reverse_func),
-        migrations.RunPython(load_service_amenties, reverse_func),
+        migrations.RunPython(load_service_amenities, reverse_func),
         migrations.RunPython(load_domicile_type, reverse_func),
         migrations.RunPython(load_accessibility_needs, reverse_func),
 

@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from .forms import *
-import json
+
 from PIL import Image
 
 
@@ -12,7 +13,7 @@ from PIL import Image
 
 # def index(request):
 # # I need to change this path to a log_in page
-#     return render(request, 'new_user.html')
+#     return render(request, 'update_user.html')
 
 #-----New User----#
 def new_user(request):
@@ -33,7 +34,7 @@ def new_user(request):
     else:
         user_form = Login()
 
-    return render(request, 'new_user.html',
+    return render(request, 'update_user.html',
                   {'user_form': user_form,
                    'registered': registered})
 
@@ -48,9 +49,9 @@ def login_zoom_user(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.active:
+            if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/log_in/')
+                return HttpResponseRedirect('/')
 
             else:
                 return HttpResponse("It seems this account is not valid.")
@@ -62,9 +63,12 @@ def login_zoom_user(request):
         return render(request, 'log_in.html')
 
 #---logout---#
-def logout(request):
 
-    return render(request, 'log_out.html')
+
+def log_out(request):
+    logout(request)
+
+    return HttpResponseRedirect("/")
 
 
 def properties_listing(request):
@@ -92,15 +96,9 @@ def property_gallery_page(request, property_id):
     photo_gallery = Photo.objects.filter(property_photos__pk=property_id)
     for i in photo_gallery:
         i.picture = i.photo
+
     return render(request, 'property_gallery.html', {'photo_gallery': photo_gallery, 'property_id': property_id})
 
-
-def load_access_need(request, property_id, pn):
-    property_needs_access = AccessibilityNeed.objects.filter(access_property_needs_pk=property_id)
-    for i in property_needs_access:
-        i.access = i.propertyneed.get
-        print(json.pn)
-    return render(request, 'big_description.html', {'property_needs_access': property_needs_access, 'property_id': property_id, 'pn': pn})
 
 
 def about_us(request):
@@ -118,4 +116,9 @@ def privacy_policy(request):
 def terms_of_use(request):
     return render(request, 'terms_of_use.html')
 
+#----------------------- Update Classes
 
+
+class UserUpdateMain(UpdateView):
+    model = User
+    fields = '__all__'

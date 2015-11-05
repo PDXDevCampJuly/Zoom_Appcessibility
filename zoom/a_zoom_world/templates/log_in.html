@@ -18,10 +18,11 @@
         <fieldset>
 
         <section class="signup">
-            <form id="signup" method="post" novalidate>
+            <form id="signup" method="post" action="/zoom/">
                 {% csrf_token %}
+
                 <label for="name">Name</label>
-                <input type="text" name="name" placeholder="name" required/>
+                <input type="text" name="username" placeholder="name" required/>
                 <label for="password">Password</label>
                 <input type="text" name="password" placeholder="6-12 characters"
                        required/>

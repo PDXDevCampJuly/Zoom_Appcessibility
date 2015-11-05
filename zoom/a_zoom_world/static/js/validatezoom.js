@@ -8,8 +8,8 @@ var form = document.getElementById('signup');
 /// validating certain things get entered into the form
 function formValidate(e) {
     e.preventDefault();
-    var name = e.target.querySelector("[name=name]");
-    if (name.value < 1) {
+    var username = e.target.querySelector("[name=username]");
+    if (username.value < 1) {
         alert("You're close, but give me a little something.");
         return false;
     }
@@ -27,7 +27,7 @@ function formValidate(e) {
         return false;
     }
     //this stores the name value so that it can be passed into the gallery
-    sessionStorage.setItem("name", name.value);
+    sessionStorage.setItem("name", username.value);
     // this directs user to the gallery page after all validation has
     // happened for correct information entered
     document.location.href = "zoom/homepage_properties";

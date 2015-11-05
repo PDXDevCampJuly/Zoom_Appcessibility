@@ -9,16 +9,39 @@
             <p> {{ property.description }}</p>
 
 
-            <h3> Access Features </h3>
+                <h3> Access Features </h3>
+            {% for access in propertyneed.accessibility_need.all %}
+            <ul>
+                <li> {{ access }}</li>
+            </ul>
+            {% empty %}
+            <li>This property is not accessible.</li>
+            {% endfor %}
 
-{% for access in property_needs_access %}
+                <h3> Amenities </h3>
+            {% for amenity in property.property_amenity.all %}
+            <ul>
+                <li>  {{ amenity }} </li>
+            </ul>
+            {% empty %}
+            <li>This property doesn't have any amenities.</li>
+            {% endfor %}
 
-                <p> {{ property.description }} </p>
+                <h3> Potential Allergens </h3>
+            {% for allergy in property.property_allergens.all %}
+            <ul>  <li> {{ allergy }}  </li>
+                {% empty %}
+                <li>Allergy Free!</li>
+            </ul>
+            {% endfor %}
 
+                <h3> Vehicle with Property </h3>
+            {% for vehicle_use in vehicle.access_needs.all %}
+                <ul><li>{{ vehicle_use }}</li></ul>
+                {% empty %}
+                <li> No vehicle available for use with this property.</li>
+            {% endfor %}
 
-{% endfor %}
-            <h3> Amenities </h3>
-                <p> {{ amenity.washer }} </p>
 
 
         </div>

@@ -10,11 +10,13 @@ urlpatterns = [
 
     url(r'^new_user', views.new_user, name='new_user'),
     url(r'^homepage_properties', views.properties_listing, name='properties_listing'),
-    url(r'^log_out', views.logout, name='log_out'),
+    url(r'^log_out', views.log_out, name='log_out'),
     url(r'^about_us', views.about_us, name='about_us'),
     url(r'^contact_us', views.contact_us, name='contact_us'),
     url(r'^privacy_policy', views.privacy_policy, name='privacy_policy'),
     url(r'^terms_of_use', views.terms_of_use, name='terms_of_use'),
     url(r'^new_listing', views.new_listing, name='new_listing'),
+
+    url(r'^(?P<pk>[0-9]+)/main', views.UserUpdateMain.as_view(template_name='update_user.html'), name='update_main'),
 
 ]
