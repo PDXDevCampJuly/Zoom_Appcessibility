@@ -6,13 +6,16 @@
         <div>
             <a href="{% url 'property_gallery' property.id %} "> <img src='{{ feature_photo.photo.url }}'alt="The feature photo of the property" width='150' height='150' /></a>
              <h3> {{ property.title }} </h3>
-            <p> {{ property.description }}</p>
+             <ul>
+                <li> {{ property.type_id}} </li>
+             </ul>
+            <p> {{ property.description }}  </p>
 
 
                 <h3> Access Features </h3>
-            {% for access in propertyneed.accessibility_need.all %}
+            {% for need in property.propertyneed.all %}
             <ul>
-                <li> {{ access }}</li>
+                <li> {{ need.accessibility_need }}</li>
             </ul>
             {% empty %}
             <li>This property is not accessible.</li>

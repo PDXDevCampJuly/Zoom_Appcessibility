@@ -127,5 +127,5 @@ class ZoomUser(models.Model):
     user = models.OneToOneField(User)
     accessibility_need = models.ManyToManyField(AccessibilityNeed)
 
-    def __str__(self):
+    def __index__(self):
         return self.user
