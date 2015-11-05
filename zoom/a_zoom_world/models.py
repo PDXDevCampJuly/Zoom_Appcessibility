@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class DomicileType(models.Model):
     """ This table distinguishes the type of housing it is"""
     type = models.CharField(max_length=500, default=None)
-    square_feet = models.IntegerField(blank=True, null=True)
+    square_feet = models.IntegerField(blank=False, null=False)
 
     def __str__(self):
         return self.type
