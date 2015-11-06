@@ -100,7 +100,6 @@ def property_gallery_page(request, property_id):
     return render(request, 'property_gallery.html', {'photo_gallery': photo_gallery, 'property_id': property_id})
 
 
-
 def about_us(request):
     return render(request, 'about_us.html')
 

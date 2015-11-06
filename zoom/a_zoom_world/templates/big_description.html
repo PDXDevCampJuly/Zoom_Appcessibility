@@ -13,9 +13,9 @@
 
 
                 <h3> Access Features </h3>
-            {% for need in property.propertyneed.all %}
+            {% for need in property.property_access.all %}
             <ul>
-                <li> {{ need.accessibility_need }}</li>
+                <li> {{ need }}</li>
             </ul>
             {% empty %}
             <li>This property is not accessible.</li>
@@ -39,8 +39,8 @@
             {% endfor %}
 
                 <h3> Vehicle with Property </h3>
-            {% for vehicle_use in vehicle.access_needs.all %}
-                <ul><li>{{ vehicle_use }}</li></ul>
+            {% for vehicle in property.property_vehicle.all %}
+                <ul><li>{{ vehicle }}</li></ul>
                 {% empty %}
                 <li> No vehicle available for use with this property.</li>
             {% endfor %}
