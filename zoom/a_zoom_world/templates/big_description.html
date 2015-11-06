@@ -6,19 +6,47 @@
         <div>
             <a href="{% url 'property_gallery' property.id %} "> <img src='{{ feature_photo.photo.url }}'alt="The feature photo of the property" width='150' height='150' /></a>
              <h3> {{ property.title }} </h3>
-            <p> {{ property.description }}</p>
+             <ul>
+                <li> {{ property.type_id}} </li>
+             </ul>
 
 
-            <h3> Access Features </h3>
-
-{% for access in property_needs_access %}
-
-                <p> {{ property.description }} </p>
+            <p> {{ property.description }}  </p>
 
 
-{% endfor %}
-            <h3> Amenities </h3>
-                <p> {{ amenity.washer }} </p>
+                <h3> Access Features </h3>
+            {% for need in property.property_access.all %}
+            <ul>
+                <li> {{ need }}</li>
+            </ul>
+            {% empty %}
+            <li>This property is not accessible.</li>
+            {% endfor %}
+
+                <h3> Amenities </h3>
+            {% for amenity in property.property_amenity.all %}
+            <ul>
+                <li>  {{ amenity }} </li>
+            </ul>
+            {% empty %}
+            <li>This property doesn't have any amenities.</li>
+            {% endfor %}
+
+                <h3> Potential Allergens </h3>
+            {% for allergy in property.property_allergens.all %}
+            <ul>  <li> {{ allergy }}  </li>
+                {% empty %}
+                <li>Allergy Free!</li>
+            </ul>
+            {% endfor %}
+
+                <h3> Vehicle with Property </h3>
+            {% for vehicle in property.property_vehicle.all %}
+                <ul><li>{{ vehicle }}</li></ul>
+                {% empty %}
+                <li> No vehicle available for use with this property.</li>
+            {% endfor %}
+
 
 
         </div>

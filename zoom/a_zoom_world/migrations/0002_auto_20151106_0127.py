@@ -11,9 +11,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RemoveField(
+            model_name='vehicle',
+            name='property_id',
+        ),
         migrations.AddField(
-            model_name='photo',
-            name='featured',
-            field=models.BooleanField(default=False),
+            model_name='property',
+            name='property_vehicle',
+            field=models.ManyToManyField(to='a_zoom_world.Vehicle'),
         ),
     ]
