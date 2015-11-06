@@ -7,10 +7,17 @@
         <div>
            <a href="{% url 'property_gallery' property.id %}"><img src='{{ property.picture.photo.url }}' alt="The feature photo of the property" width=150, height=150 /></a>
            <a href="{% url 'property_description' property.id %}"> <h3> {{ property.title }}  </h3> </a>
-            <p> {{ property.description }}</p>
+            <ul>
+                <li> {{ property.type_id}}</li>
+                <li> {{ property.num_bedroom }} bed/{{ property.num_bathroom }} bath</li>
+                <li> {{ property.type_id.square_feet }} ft<sup>2</sup> </li>
+            </ul>
 
-            <h3> Accessible Bedroom/Bathroom Score </h3>
+            <h3> Accessible Bedroom Score </h3>
             <p> {{ property.access_num_bedroom}} / {{ property.num_bedroom }} </p>
+
+            <h3> Accessible Bathroom Score </h3>
+
             <p> {{ property.access_num_bathroom}} / {{ property.num_bathroom }}</p>
         </div>
     {% endfor %}

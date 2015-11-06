@@ -8,9 +8,11 @@
              <h3> {{ property.title }} </h3>
              <ul>
                 <li> {{ property.type_id}} </li>
+                 <li> {{ property.num_bedroom }} bed/{{ property.num_bathroom }} bath</li>
+                 <li> {{ property.type_id.square_feet }} ft<sup>2</sup> </li>
+
              </ul>
-
-
+                <h3> Property Description </h3>
             <p> {{ property.description }}  </p>
 
 
