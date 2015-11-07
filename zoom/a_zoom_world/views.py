@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from .forms import *
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from PIL import Image
 
@@ -31,7 +32,7 @@ def new_user(request):
     else:
         user_form = Login()
 
-    return render(request, 'new_user.html',{'user_form': user_form, 'registered': registered})
+    return render(request, 'new_user.html', {'user_form': user_form, 'registered': registered})
 
 
      #----This is for a user already in the system ----#
@@ -66,7 +67,7 @@ def log_out(request):
 
     return HttpResponseRedirect("/")
 
-
+@login_required(login_url='/')
 def properties_listing(request):
     # main list of properties
     # we want to fetch all properties from database and pass to template"
@@ -77,6 +78,7 @@ def properties_listing(request):
     return render(request, 'homepage_properties.html', {'listing': listings})
 
 
+@login_required(login_url='/')
 def property_description(request, property_id):
     property_info = Property.objects.get(pk=property_id)
     feature_photo = property_info.photo_property.get(featured=True)
@@ -84,10 +86,12 @@ def property_description(request, property_id):
     return render(request, 'big_description.html', {'property': property_info, 'feature_photo': feature_photo})
 
 
+@login_required(login_url='/')
 def new_listing(request):
     return render(request, 'new_listing.html')
 
 
+@login_required(login_url='/')
 def property_gallery_page(request, property_id):
     photo_gallery = Photo.objects.filter(property_photos__pk=property_id)
     for i in photo_gallery:
