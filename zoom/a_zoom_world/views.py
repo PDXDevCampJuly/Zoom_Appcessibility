@@ -4,16 +4,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from .forms import *
+from django.contrib.auth.models import User
 
 from PIL import Image
 
 
 # Create your views here.
 
-
-# def index(request):
-# # I need to change this path to a log_in page
-#     return render(request, 'update_user.html')
 
 #-----New User----#
 def new_user(request):
@@ -34,9 +31,7 @@ def new_user(request):
     else:
         user_form = Login()
 
-    return render(request, 'update_user.html',
-                  {'user_form': user_form,
-                   'registered': registered})
+    return render(request, 'new_user.html',{'user_form': user_form, 'registered': registered})
 
 
      #----This is for a user already in the system ----#
@@ -46,12 +41,13 @@ def login_zoom_user(request):
 
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
+        email = request.POST.get('email')
+        user = authenticate(username=username, password=password, email=email)
 
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/zoom/homepage_properties')
 
             else:
                 return HttpResponse("It seems this account is not valid.")
