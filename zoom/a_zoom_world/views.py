@@ -15,24 +15,50 @@ from PIL import Image
 
 #-----New User----#
 def new_user(request):
-    registered = False
-    if request.method == 'POST':
-        user_form = Login(data=request.POST)
+    c = {}
+    state = "Please Register below..."
+    username = None
+    email = None
+    password = None
+    user_success = None
+    user_created = None
+    if request.POST:
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        print("username ", username)
 
-        if user_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-
-            registered = True
-
-            return HttpResponseRedirect("/log_in/")
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            user_created = True
         else:
-            print(user_form.errors)
+            user_created = False
     else:
-        user_form = Login()
+        user = User.objects.create_user(username=username, password=password, email=email)
+        user.save()
+        user.is_active = True
+        user_success = True
 
-    return render(request, 'new_user.html', {'user_form': user_form, 'registered': registered})
+    return render('register.html', c, {'success': user_success, 'created': user_created, 'username': username}, context_instance=RequestContext(request))
+    # registered = False
+    # if request.method == 'POST':
+    #     user_form = Login(data=request.POST)
+    #
+    #     if user_form.is_valid():
+    #         user = user_form.save()
+    #         user.set_password(user.password)
+    #         user.save()
+    #
+    #         registered = True
+    #
+    #         return HttpResponseRedirect("/zoom/homepage_properties")
+    #     else:
+    #         print(user_form.errors)
+    # else:
+    #     user_form = Login()
+    #
+    # return render(request, 'new_user.html', {'user_form': user_form, 'registered': registered})
 
 
      #----This is for a user already in the system ----#

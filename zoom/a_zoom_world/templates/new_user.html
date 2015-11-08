@@ -10,29 +10,41 @@
 
 </head>
     <body>
-                <div id="menu" >
-                <section class="newsignup">
-                    <h2>New User Sign Up</h2>
+                <!--<div id="menu" >-->
+                    <!--<section class="newsignup">-->
+                        <!--<h2>New User Sign Up</h2>-->
 
-                    <form id="newsignup" method="post" action="/zoom/">
-                        {% csrf_token %}
+                <form action="/register" method="post">
 
-                        <label for="name">Name</label>
-                        <input type="text" name="username" placeholder="name" required/>
-                        <label for="name2"> Last Name </label>
-                        <input type="text" name="lastname" placeholder="last name" required/>
-                        <label for="password">Password</label>
-                        <input type="text" name="password" placeholder="6-12 characters"
-                               required/>
-                        <label for="email">Email</label>
-                        <input type="email" name="email" placeholder="youremail@place.com" required/>
+                    {% csrf_token %}
+                    username:
+                    <input type="text" name="username" value="{{ username}}"/><br/>
+                    password:
+                    <input type="password" name="password" value=""/><br/>
+                    Email:
+                    <input type="text" name="email" value="{{email}}"/><br/>
 
-                        <input type="submit" name="submit" id="submit"
-                               value="Zoom Time!"/>
-                    </form>
-                </section>
+                    <input type='submit' value='Register'/>
+                </form>
+                        <!--<form id="newsignup" method="post" action="/zoom/">-->
+                            <!--{% csrf_token %}-->
 
-                </div>
+                            <!--<label for="name">First Name</label>-->
+                            <!--<input type="text" name="username" placeholder="name" required/>-->
+                            <!--<label for="name2"> Last Name </label>-->
+                            <!--<input type="text" name="lastname" placeholder="last name" required/>-->
+                            <!--<label for="password">Password</label>-->
+                            <!--<input type="text" name="password" placeholder="6-12 characters"-->
+                                   <!--required/>-->
+                            <!--<label for="email">Email</label>-->
+                            <!--<input type="email" name="email" placeholder="youremail@place.com" required/>-->
+
+                            <!--<input type="submit" name="submit" id="submit"-->
+                                   <!--value="Zoom Time!"/>-->
+                        <!--</form>-->
+                    <!--</section>-->
+
+                <!--</div>-->
 
         <div id="footer">
             <p id="legal">Copyright &copy; 2015. All Rights Reserved. Designed by
@@ -43,7 +55,7 @@
                 Use</a> | <a href="contact_us">Contact Us</a></p>
         </div>
 
-        <script type="text/javascript" src="{% static 'js/validatezoom.js' %}"></script>
+        <!--<script type="text/javascript" src="{% static 'js/validatezoom.js' %}"></script>-->
 
     </body>
 </html>
