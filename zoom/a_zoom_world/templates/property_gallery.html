@@ -1,31 +1,21 @@
-#here I want this to display all the images associated with the property.
-# A lightbox will happen when you click on the image
-
-
 {% extends "base.html" %}
 
 {% block zoom_content %}
 
+<a href="{% url 'property_description' property_id %}"><h3> Go back to property listing! </h3></a>
+
 {% for picture in photo_gallery %}
-        <li>
-        <a href="property_gallery"><img src='{{ picture.photo.url }}'
-            alt="A gallery of photos for the property."  width='150' height='150'/></a>
-        </li>
+    <span>
+        <ul>
+            <li>
+            <a href="property_gallery"><img src='{{ picture.photo.url }}'
+                alt="A gallery of photos for the property."  width='150' height='150'/></a>
+            </li>
+        </ul>
+    </span>
 
 {% endfor %}
 
-    <a href="{% url 'property_description' property_id %}"><h3> Go back to property listing! </h3></a>
 
-    <!--<main class="gallery_page">-->
-     <!--<header> Zoom Time <span-->
-            <!--class="tagline">develop something beautiful, tiffany</span></header>-->
-
-    <!--<section id="gallery" class="gallery">-->
-
-    <!--</section>-->
-
-    <!--&lt;!&ndash;<div id="image_show" class="display_none"><img&ndash;&gt;-->
-            <!--&lt;!&ndash;src="{{ picture.photo.url }}"/></div>&ndash;&gt;-->
-<!--</main>-->
 
 {% endblock %}

@@ -4,27 +4,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <title>{% block title %} Zoom Appcessibility {% endblock %}</title>
-
-    <link href="{% static 'css/travel.css' %}" rel="stylesheet"
-          type="text/css"/>
-
-
+    <link href="{% static 'css/travel.css' %}" rel="stylesheet" type="text/css"/>
 </head>
+
 <body>
     <header>
-        <h1>{% block header_text %} Zooming Around the World {% endblock %}</h1>
+        <h1>{% block header_text %} <i> Zooming Around the World </i> {% endblock %}</h1>
     </header>
 
-    <div id="menu">
+    <section id="menu">
         <ul>
-            <li class="first"><a href="{% url 'properties_listing' %} ">Home</a></li>
+            <li><a href="{% url 'properties_listing' %} ">Home</a></li>
             <li><a href="{% url 'new_listing' %}">Create New Listing</a></li>
             <li><a href="{% url 'about_us' %}">About Us</a></li>
             <li><a href="{% url 'log_out' %}"> Log Out</a></li>
         </ul>
-    </div>
+    </section>
 
     <main>
     {% block zoom_content %}
@@ -34,14 +30,14 @@
     </main>
 
 
-    <div id="footer">
+    <section id="footer">
         <p id="legal">Copyright &copy; 2015. All Rights Reserved. Designed by
             Summer Lyn Bryant and Stratos Group LLC.</p>
 
         <p id="links"><a href="{% url 'privacy_policy' %}">Privacy Policy</a> | <a href="{% url 'terms_of_use' %}">Terms of
             Use</a> | <a href="{% url 'contact_us' %}">Contact Us</a></p>
-    </div>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    </section>
+    <!--<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
     <!--<script type="text/javascript" src="{% static 'js/validatezoom.js' %}" > </script>-->
     <!--<script type="text/javascript" src="{% static 'js/lightbox/lightbox.js' %}"> </script>-->
 
