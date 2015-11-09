@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template import RequestContext
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -15,8 +16,7 @@ from PIL import Image
 
 #-----New User----#
 def new_user(request):
-    c = {}
-    state = "Please Register below..."
+    context = RequestContext(request)
     username = None
     email = None
     password = None
@@ -28,19 +28,19 @@ def new_user(request):
         password = request.POST.get('password')
         print("username ", username)
 
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            user_created = True
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                user_created = True
+            else:
+                user_created = False
         else:
-            user_created = False
-    else:
-        user = User.objects.create_user(username=username, password=password, email=email)
-        user.save()
-        user.is_active = True
-        user_success = True
+            user = User.objects.create_user(username=username, password=password, email=email)
+            user.save()
+            user.is_active = True
+            user_success = True
 
-    return render('register.html', c, {'success': user_success, 'created': user_created, 'username': username}, context_instance=RequestContext(request))
+    return render(request, 'new_user.html', {'success': user_success, 'created': user_created, 'username': username}, context)
     # registered = False
     # if request.method == 'POST':
     #     user_form = Login(data=request.POST)
