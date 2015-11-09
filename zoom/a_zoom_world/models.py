@@ -91,7 +91,7 @@ class Property(models.Model):
     num_bathroom = models.CharField(max_length=20, default=None)
     access_num_bedroom = models.CharField(max_length=20, default=None)
     access_num_bathroom = models.CharField(max_length=20, default=None)
-    photo_property = models.ManyToManyField(Photo, related_name='property_photos', verbose_name=('photo_property'))
+    photo_property = models.ManyToManyField(Photo, related_name='property_photos', verbose_name='photo_property')
     property_amenity = models.ManyToManyField(Amenity)
     property_allergens = models.ManyToManyField(PotentialAllergen)
     property_vehicle = models.ManyToManyField(Vehicle)
@@ -117,7 +117,6 @@ class PropertyNeed(models.Model):
     accessibility_need = models.ForeignKey(AccessibilityNeed)
     property_need = models.ManyToManyField(NeedException)
 
-    # Do I need number of accessible bathrooms/bedrooms?
     def __index__(self):
         return self.property_id
 

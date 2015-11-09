@@ -17,6 +17,6 @@ urlpatterns = [
     url(r'^terms_of_use', views.terms_of_use, name='terms_of_use'),
     url(r'^new_listing', views.new_listing, name='new_listing'),
 
-    url(r'^(?P<pk>[0-9]+)/main', views.UserUpdateMain.as_view(template_name='update_user.html'), name='update_main'),
+    # url(r'^(?P<pk>[0-9]+)/main', views.UserUpdateMain.as_view(template_name='edit_user.html'), name='update_main'),
 
 ]
