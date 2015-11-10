@@ -28,7 +28,7 @@ def new_user(request):
         password = request.POST.get('password')
         print("username ", username)
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password, email=email)
         if user is not None:
             if user.is_active:
                 user_created = True
@@ -39,6 +39,7 @@ def new_user(request):
             user.save()
             user.is_active = True
             user_success = True
+            return HttpResponseRedirect('/zoom/zoom_user_profile')
 
     return render(request, 'new_user.html', {'success': user_success, 'created': user_created, 'username': username}, context)
     # registered = False
@@ -63,7 +64,7 @@ def new_user(request):
 
      #----This is for a user already in the system ----#
 
-def login_zoom_user(request):
+def login_user(request):
     if request.method == 'POST':
 
         username = request.POST.get('username')
@@ -93,6 +94,15 @@ def log_out(request):
 
     return HttpResponseRedirect("/")
 
+#----------zoom_user_profile -------------#
+
+
+def zoom_user(request):
+    user_profile = ZoomUser.objects.all()
+
+    return render(request, 'zoom_user_profile.html', user_profile)
+
+
 @login_required(login_url='/')
 def properties_listing(request):
     # main list of properties
@@ -114,6 +124,8 @@ def property_description(request, property_id):
 
 @login_required(login_url='/')
 def new_listing(request):
+
+
     return render(request, 'new_listing.html')
 
 

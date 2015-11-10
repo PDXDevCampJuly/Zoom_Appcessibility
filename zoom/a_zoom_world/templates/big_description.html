@@ -2,33 +2,40 @@
 
 {% block zoom_content %}
 
-<a href="{% url 'properties_listing' %}"><h3> Go back Home to list of properties! </h3></a>
+        <div class="img_desc">
+            <div>
+                <a href="{% url 'property_gallery' property.id %} "> <img src='{{ feature_photo.photo.url }}'alt="The feature photo of the property" width='150' height='150' /></a>
+            </div>
+
+             <div class="description">
+             <h2> {{ property.title }} </h2>
+
+
+            <ul>
+                <li> {{ property.type_id}} </li>
+                <li> {{ property.num_bedroom }} bed/{{ property.num_bathroom }} bath</li>
+                <li> {{ property.type_id.square_feet }} ft<sup>2</sup> </li>
+            </ul>
+
+
+                <h3> Property Description </h3>
+                <p> {{ property.description }}  </p>
+        </div>
+        </div>
+
 
         <div>
-            <a href="{% url 'property_gallery' property.id %} "> <img src='{{ feature_photo.photo.url }}'alt="The feature photo of the property" width='150' height='150' /></a>
-             <h2> {{ property.title }} </h2>
-             <ul>
-                <li> {{ property.type_id}} </li>
-                 <li> {{ property.num_bedroom }} bed/{{ property.num_bathroom }} bath</li>
-                 <li> {{ property.type_id.square_feet }} ft<sup>2</sup> </li>
-
-             </ul>
-
-             <section class="description">
-                <h3> Property Description </h3>
-            <p> {{ property.description }}  </p>
-
-
-
                 <h3> Access Features </h3>
-            {% for need in property.property_access.all %}
-            <ul>
-                <li> {{ need }}</li>
-            </ul>
-            {% empty %}
-            <li>This property is not accessible.</li>
-            {% endfor %}
+                {% for need in property.property_access.all %}
+                <ul>
+                    <li> {{ need }}</li>
+                </ul>
+                {% empty %}
+                <li>This property is not accessible.</li>
+                {% endfor %}
+        </div>
 
+        <div>
                 <h3> Amenities </h3>
             {% for amenity in property.property_amenity.all %}
             <ul>
@@ -37,7 +44,9 @@
             {% empty %}
             <li>This property doesn't have any amenities.</li>
             {% endfor %}
+        </div>
 
+        <div>
                 <h3> Potential Allergens </h3>
             {% for allergy in property.property_allergens.all %}
             <ul>  <li> {{ allergy }}  </li>
@@ -46,14 +55,16 @@
             </ul>
             {% endfor %}
 
+        </div>
+            <div>
                 <h3> Vehicle with Property </h3>
             {% for vehicle in property.property_vehicle.all %}
                 <ul><li>{{ vehicle }}</li></ul>
                 {% empty %}
                 <li> No vehicle available for use with this property.</li>
             {% endfor %}
-             </section>
-        </div>
+             </div>
+
 
 
 {% endblock %}

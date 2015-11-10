@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^$', include('a_zoom_world.urls')),
     url(r'^zoom/', include('a_zoom_world.urls')),
 
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

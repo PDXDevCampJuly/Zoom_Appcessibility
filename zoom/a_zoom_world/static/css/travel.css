@@ -13,6 +13,7 @@ body {
 #menu {
 	margin-bottom: 50px;
 	padding: 25px;
+	width: 100%;
 	background: #85C329 repeat-x;
 }
 
@@ -35,9 +36,9 @@ body {
 }
 
 li {
-	display: inline;
-
-}
+	display: inline-block;
+	list-style: none;
+	}
 
 img {
 
@@ -45,7 +46,7 @@ img {
 	height: 225px;
 	width: 225px;
 	border: 10px solid black;
-	border-bottom: 20px solid orangered;
+	border-right: 20px solid orangered;
 	padding: 50px;
 	left: 50%;
 	top: 50%;
@@ -61,26 +62,39 @@ span {
 
 div {
 	display: inline-block;
-	border: solid #85C329;
-	margin: 25px;
+	vertical-align: top;
+	border-top: 5px solid #85C329;
+	/*border-bottom: 5px double #85C329;*/
 	text-align: center;
+	margin: 5px;
 	text-transform: capitalize;
+}
+
+.img_desc {
+	border-bottom: 5px double #85C329;
 
 }
-section.listing li {
+.description {
+	width: 70%;
 
+}
+section {
 	display: inline-block;
-	list-style: none;
-	padding: 10px;
+}
+
+section.register {
+	text-transform: capitalize;
+
+	}
+
+a:hover {
+	color: #85C329;
 
 }
 h3 {
 	color: orangered;
-	display: block;
 
-	}
-
-
+}
 
 
 /* Login */
@@ -100,9 +114,6 @@ h3 {
 	border: none;
 }
 
-#login label {
-	color: #FFFFFF;
-}
 
 #signup {
 	width: 194px;
@@ -124,41 +135,33 @@ input {
 
 /* Footer */
 
-#footer {
+
+#links {
+
+	margin: 0;
+	font-size: 85%;
+	color: orangered;
+
+}
+
+footer {
+  	display: inline-block;
+	font-size: 85%;
+	color: orangered;
 	width: 980px;
-	height: 120px;
 	margin: 0 auto;
 	background: repeat-x;
 }
 
 #links {
-
-	margin: 0;
-	font-size: 85%;
-	color: orangered;
-
-}
-
-#footer p {
-	margin: 0;
-	font-size: 85%;
-	color: orangered;
-}
-
-#links {
-	float: left;
-	width: 220px;
-	height: 45px;
+	/*float: left;*/
+	/*width: 220px;*/
 	padding: 35px 0 0 20px;
 }
 
-#links a {
-	color: #80300e;
-}
-
 #legal {
-	float: right;
+	/*float: right;*/
 	width: 720px;
-	height: 45px;
+	/*height: 45px;*/
 	padding: 35px 0 0 20px;
 }

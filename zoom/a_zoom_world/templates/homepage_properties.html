@@ -16,11 +16,14 @@
             </ul>
             </section>
             <h3> Accessible Bedrooms Score </h3>
-            <p> {{ property.access_num_bedroom}} / {{ property.num_bedroom }} </p>
+            <ul>
+            <li> {{ property.access_num_bedroom}} / {{ property.num_bedroom }} </li>
+            </ul>
 
             <h3> Accessible Bathrooms Score </h3>
-
-            <p> {{ property.access_num_bathroom}} / {{ property.num_bathroom }}</p>
+            <ul>
+            <li> {{ property.access_num_bathroom}} / {{ property.num_bathroom }}</li>
+            </ul>
         </div>
     {% endfor %}
 {% endblock %}

@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-{% load staticfiles %}
+{% extends "base.html" %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Zoom Appcessibility </title>
-    <link href="{% static 'css/travel.css' %}" rel="stylesheet"
-          type="text/css"/>
 
-</head>
-    <body>
-                <!--<div id="menu" >-->
-                    <!--<section class="newsignup">-->
-                        <!--<h2>New User Sign Up</h2>-->
+{% block zoom_content %}
 
-                <form action="/register" method="post">
-
+            <section class="register">
+                <form  action="new_user" method="post">
                     {% csrf_token %}
+
                     username:
                     <input type="text" name="username" value="{{ username}}"/><br/>
                     password:
@@ -26,36 +16,11 @@
 
                     <input type='submit' value='Register'/>
                 </form>
-                        <!--<form id="newsignup" method="post" action="/zoom/">-->
-                            <!--{% csrf_token %}-->
 
-                            <!--<label for="name">First Name</label>-->
-                            <!--<input type="text" name="username" placeholder="name" required/>-->
-                            <!--<label for="name2"> Last Name </label>-->
-                            <!--<input type="text" name="lastname" placeholder="last name" required/>-->
-                            <!--<label for="password">Password</label>-->
-                            <!--<input type="text" name="password" placeholder="6-12 characters"-->
-                                   <!--required/>-->
-                            <!--<label for="email">Email</label>-->
-                            <!--<input type="email" name="email" placeholder="youremail@place.com" required/>-->
+            </section>
 
-                            <!--<input type="submit" name="submit" id="submit"-->
-                                   <!--value="Zoom Time!"/>-->
-                        <!--</form>-->
-                    <!--</section>-->
 
-                <!--</div>-->
 
-        <div id="footer">
-            <p id="legal">Copyright &copy; 2015. All Rights Reserved. Designed by
-                Summer Lyn Bryant and Stratos Group LLC.</p>
 
-            <p id="links"><a href="privacy_policy">Privacy Policy</a> | <a
-                    href="terms_of_use">Terms of
-                Use</a> | <a href="contact_us">Contact Us</a></p>
-        </div>
 
-        <!--<script type="text/javascript" src="{% static 'js/validatezoom.js' %}"></script>-->
-
-    </body>
-</html>
+    {% endblock %}

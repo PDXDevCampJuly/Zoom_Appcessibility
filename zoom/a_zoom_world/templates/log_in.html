@@ -12,7 +12,7 @@
     <body>
     <div id="menu">
         <header>
-            <h1>{% block header_text %} Zooming Around the World {% endblock %}</h1>
+            <h1>{% block header_text %} <i> Zooming Around the World </i> {% endblock %}</h1>
         </header>
         <fieldset>
 
@@ -20,11 +20,10 @@
             <form id="signup" method="post" action="/zoom/">
                 {% csrf_token %}
 
-                <label for="name">Name</label>
-                <input type="text" name="username" placeholder="name" required/>
+                <label for="name">Username</label>
+                <input type="text" name="username" placeholder="username" required/>
                 <label for="password">Password</label>
-                <input type="text" name="password" placeholder="6-12 characters"
-                       required/>
+                <input type="password" name="password" placeholder="password" required/>
                 <label for="email">Email</label>
                 <input type="email" name="email" placeholder="youremail@place.com" required/>
 
@@ -35,7 +34,7 @@
 
 
             <p>
-                <a href="#">Forgot your password?</a><br/>
+                <!--<a href="#">Forgot your password?</a><br/>-->
                 <a href="{% url 'new_user' %}">Register for Free!</a>
             </p>
         </fieldset>
@@ -51,14 +50,14 @@
 
 
 
-<div id="footer">
+<footer>
     <p id="legal">Copyright &copy; 2015. All Rights Reserved. Designed by
         Summer Lyn Bryant and Stratos Group LLC.</p>
 
     <p id="links"><a href="privacy_policy">Privacy Policy</a> | <a
             href="terms_of_use">Terms of
         Use</a> | <a href="contact_us">Contact Us</a></p>
-</div>
+</footer>
 
 <!--<script type="text/javascript" src= "{% static 'js/validatezoom.js' %}"> </script>-->
     </body>
